@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl_dashboard.OwlMainDashboard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h1 class="fw-bold" style="font-size: 3rem; text-align: center;">
+                                Sales Dashboard
+                                    </h1>
+                                </div>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <div>
+                                        <select class="form-select" t-model="state.period" t-on-change="onChangePeriod">
+                                            <option value="0">All Time</option>
+                                            <option value="7">Last 7 Days</option>
+                                            <option value="30">Last 30 Days</option>
+                                            <option value="90">Last 90 Days</option>
+                                            <option value="365">Last 365 Days</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <KpiCard onClick.bind="viewQuotations" name="'Quotations'" value="state.quotations.value" period="state.period" percentage="state.quotations.percentage"/>
+                        </div>
+                        <div class="col-lg-3">
+                            <KpiCard onClick.bind="viewOrders" name="'Orders'" value="state.orders.value" percentage="state.orders.percentage" period="state.period"/>
+                        </div>
+                        <div class="col-lg-3">
+                            <KpiCard onClick.bind="viewRevenues" name="'Revenues'" value="state.orders.revenue" percentage="state.orders.revenue_percentage" period="state.period"/>
+                        </div>
+                        <div class="col-lg-3">
+                            <KpiCard onClick.bind="viewRevenues" name="'Average Order'" value="state.orders.average" percentage="state.orders.average_percentage" period="state.period"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Sales History</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <DateChart config="state.salesHistory"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8" style="width: 65%">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top Sales Product</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <!-- <ChartRenderer type="'bar'" title="'Monthly Sales Report'"/> -->
+                                <ColumnChart config="state.topProducts"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="width: 35%;">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top Sales Product</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <GradientPie config="state.topProducts"/>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Sales Flow</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <SankeyDiagram config="state.sankeyData"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>
+

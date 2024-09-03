@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl_dashboard.DateChart" owl="1">
+        <div t-ref="chart" style="width: 100%; height: 500px;"></div>
+    </t>
+</templates>
